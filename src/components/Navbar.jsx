@@ -8,20 +8,20 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-50 ">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex-1 md:flex md:items-center md:gap-12">
+    <header className="fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-50 md:mt-0 sm:mt-4">
+      <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 flex justify-between h-16">
+        
+          <div className="md:flex md:items-center">
             <img className="h-7" src="/public/nombre-azul.png" alt="Mytinerary" />
           </div>
-
-          <div className="md:flex md:items-center md:gap-12">
-            <nav className="hidden md:inline items-center">
+          
+          <nav className="hidden md:inline items-center">
               {links.map((anchord) => (<Anchord key={anchord.to} title={anchord.title} to={anchord.to} />))}
-            </nav>
+          </nav>
 
-            <div className="flex items-center gap-4">
-              <div className="sm:flex sm:gap-4">
+          <div className="md:flex md:items-center">  
+            <div className="flex items-center">
+              <div className="sm:flex px-2">
                 <a
                   className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow"
                   href="/"
@@ -29,7 +29,7 @@ const Navbar = () => {
                   Login
                 </a>
 
-                <div className="hidden sm:flex">
+                <div className="hidden px-2 sm:flex">
                   <a
                     className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow"
                     href="/"
@@ -59,7 +59,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
     </header>
   );
