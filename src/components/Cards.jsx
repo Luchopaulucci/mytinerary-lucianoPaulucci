@@ -2,7 +2,7 @@ import React from "react";
 
 const Cards = ({ citie, county, image, description }) => {
   return (
-    <a href="#" className="h-44 w-72 group relative block bg-black sm:h-full">
+    <a href="#" className="h-44 w-64 group relative block bg-black sm:h-full">
       <img
         alt="Citie"
         src={image}

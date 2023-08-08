@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Anchord from "./Anchord";
+import SliderMenu from "./SliderMenu";
 
 const Navbar = () => {
   const links = [
     { title: "Home", to: "/home" },
     { title: "Cities", to: "/cities" },
   ];
+
+  const [slideOpen, setSlideOpen] = useState(false);
+
+  const toggleSlide = () => {
+    setSlideOpen(!slideOpen);
+  };
+
+  const closeSlide = () => {
+    setSlideOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-50 md:mt-0 sm:mt-4">
@@ -40,7 +51,7 @@ const Navbar = () => {
               </div>
 
               <div className="block md:hidden">
-                <button className="rounded bg-7 p-2 text-gray-700 transition hover:bg-6">
+                <button onClick={toggleSlide} className="rounded bg-7 p-2 text-gray-700 transition hover:bg-6">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -56,10 +67,10 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
+                <SliderMenu isOpen={slideOpen} onClose={closeSlide} />
               </div>
             </div>
           </div>
-        
       </div>
     </header>
   );
