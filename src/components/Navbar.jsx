@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-50">
-      <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 flex justify-between h-16">
+      <div className="mx-auto max-w-screen-xl py-4 flex justify-evenly h-16">
         
           <div className="md:flex md:items-center">
             <img className="h-7" src="/public/nombre-azul.png" alt="Mytinerary" />
@@ -32,7 +32,7 @@ const Navbar = () => {
 
           <div className="md:flex md:items-center">  
             <div className="flex items-center">
-              <div className="sm:flex px-2">
+              <div className="sm:flex">
                 <a
                   className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow"
                   href="/login"
@@ -40,7 +40,7 @@ const Navbar = () => {
                   Login
                 </a>
 
-                <div className="hidden px-2 sm:flex">
+                <div className="hidden sm:flex px-2">
                   <a
                     className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow"
                     href="/signup"
