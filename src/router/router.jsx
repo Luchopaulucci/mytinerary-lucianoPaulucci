@@ -7,7 +7,7 @@ import Login from './../pages/Login';
 import Details from '../pages/Details';
 
 const router = createBrowserRouter([
-    { 
+    {
         path:'/',
         element: <Main />,
         children: [
