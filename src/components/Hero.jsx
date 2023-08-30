@@ -14,7 +14,7 @@ const Hero = () => {
             their cities!
           </h2>
           <div className="flex justify-center">
-            <a className="items-center rounded border-indigo-600 bg-1 px-10 py-2 text-white hover:text-7 w-fit" href="/download" >
+            <a className="items-center rounded border-indigo-600 bg-1 px-10 py-2 text-white hover:text-7 w-fit" href="/cities" >
               <h3 className="font-">See more</h3>
             </a>
           </div>
