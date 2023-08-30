@@ -50,7 +50,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <div className="block md:hidden">
+              <div className="block md:hidden mx-2">
                 <button onClick={toggleSlide} className="rounded bg-7 p-2 text-gray-700 transition hover:bg-6">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -8,7 +8,7 @@ const Carousel = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/cities/get?name=")
+      .get("http://localhost:4000/api/cities/get")
       .then((response) => setCities(response.data.cities))
       .catch((err) => console.error(err));
   }, []);
@@ -61,9 +61,6 @@ const Carousel = () => {
         </svg>
       </button>
 
-      {/* <a key={cities._id} to={`/cities/${cities._id}`}>
-      </a>  */}
-
       <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap justify-center ">
         {visibleCities.map((cards) => (
           <Cards
@@ -72,6 +69,7 @@ const Carousel = () => {
             county={cards.country}
             image={cards.image}
             description={cards.description}
+            _id={cards._id}
           />
         ))}
       </div>

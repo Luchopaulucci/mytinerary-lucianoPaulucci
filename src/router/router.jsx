@@ -4,6 +4,7 @@ import Main from '../layouts/Main'
 import Cities from "../pages/Cities";
 import SignUp from './../pages/SignUp';
 import Login from './../pages/Login';
+import Details from '../pages/Details';
 
 const router = createBrowserRouter([
     { 
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/cities',
-                element: <Cities />
+                element: <Cities />,
             },
             {
                 path: '/login',
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp />
             },
+            {
+                path: '/cities/:id',
+                element: <Details />
+            }
         ]
     },
 ]);
