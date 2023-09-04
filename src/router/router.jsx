@@ -3,7 +3,7 @@ import Home from '../pages/Home'
 import Main from '../layouts/Main'
 import Cities from "../pages/Cities";
 import SignUp from './../pages/SignUp';
-import Login from './../pages/Login';
+import Login from './../pages/Login.jsx';
 import Details from '../pages/Details';
 
 const router = createBrowserRouter([
