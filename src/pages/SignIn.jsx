@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { user_photo } from "../store/actions/userActions";
 
-const Login = () => {
+const SignIn = () => {
 
   const dispatch = useDispatch();
 
@@ -81,4 +81,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default SignIn;
