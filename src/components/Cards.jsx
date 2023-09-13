@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Cards = ({ country, citie, image, description, _id }) => {
   return (
     <div className="flex flex-wrap">
-      <a href={"/cities/" + _id} className="w-64 group relative block bg-black">
+      <Link to={"/cities/" + _id} className="w-64 group relative block bg-black">
         <div className="h-96">
           <img
             alt="Citie"
@@ -30,11 +31,9 @@ const Cards = ({ country, citie, image, description, _id }) => {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
 
 export default Cards;
-
-

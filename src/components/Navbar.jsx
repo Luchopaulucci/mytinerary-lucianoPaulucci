@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import Link from "../components/Link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { user_logout } from "../store/actions/userActions";
 
 const Navbar = () => {
+
+  const dispatch = useDispatch()
+
   const links = [
     { title: "Home", to: "/" },
     { title: "Cities", to: "/cities" },
   ];
-
   const [slideOpen, setSlideOpen] = useState(false);
 
-  const photo = useSelector(store => store.userReducer.photo)
+  const user = useSelector(store => store.userReducer.user)
+
+  const defaultPhoto = "../../../public/guest.webp"
 
   const toggleSlide = () => {
     setSlideOpen(!slideOpen);
@@ -24,6 +29,10 @@ const Navbar = () => {
     closeSlide();
   };
 
+  const handleLogOut = () => {
+      dispatch(user_logout());
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-50">
       <div className="mx-auto max-w-screen-xl py-4 flex justify-evenly h-16">
@@ -32,31 +41,33 @@ const Navbar = () => {
           <img className="h-7" src="/public/nombre-azul.png" alt="Mytinerary" />
         </div>
 
-        <nav className="hidden md:inline items-center">
+        <nav className="hidden md:inline items-center space-x-4">
           {links.map((link) => (
-            <Link key={link.to} title={link.title} to={link.to} />
+            <Link key={link.to} to={link.to} className="text-white text-xl">
+              {link.title}
+            </Link>
           ))}
         </nav>
 
         <div className="md:flex md:items-center">
           <div className="flex items-center">
-            <div className="sm:flex">
-              <a
-                className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow"
-                href="/login"
-              >
-                Login
-              </a>
-
-              <div className="hidden sm:flex px-2">
-                <a
-                  className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow"
-                  href="/signup"
-                >
-                  Sing Up
-                </a>
-              </div>
-            </div>
+            {user
+              ?
+              (<a onClick={handleLogOut} href="/" className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow">
+                SignOut
+              </a>)
+              :
+              (<div className="sm:flex">
+                <Link to="/signin" className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow">
+                  Login
+                </Link>
+                <div className="hidden sm:flex px-2">
+                  <Link to="/signup" className="rounded-md bg-7 px-5 py-2.5 text-sm font-medium text-white shadow">
+                    Sing Up
+                  </Link>
+                </div>
+              </div>)
+            }
 
             <div
               className={`fixed top-0 right-0 h-screen w-1/2 bg-gray-800 transform ${slideOpen ? "translate-x-0" : "translate-x-full"
@@ -65,28 +76,17 @@ const Navbar = () => {
               <div className="p-4 flex justify-center">
                 <ul className="space-y-4">
                   <li className="mt-2">
-                    <a
-                      className="text-white text-xl"
-                      href="/"
-                      onClick={handleLinkClick}
-                    >
+                    <Link to="/" className="text-white text-xl" onClick={handleLinkClick}>
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      className="text-white text-xl"
-                      href="/cities"
-                      onClick={handleLinkClick}
-                    >
+                    <Link to="/cities" className="text-white text-xl" onClick={handleLinkClick}>
                       Cities
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <button
-                      onClick={closeSlide}
-                      className="bg-gray-300 rounded mt-4 p-1"
-                    >
+                    <button onClick={closeSlide} className="bg-gray-300 rounded mt-4 p-1">
                       Close
                     </button>
                   </li>
@@ -121,7 +121,7 @@ const Navbar = () => {
           <span className="sr-only">Profile</span>
           <img
             alt="Man"
-            src={photo}
+            src={user ? user.photo : defaultPhoto}
             className="h-10 w-10 rounded-full object-cover"
           />
         </div>

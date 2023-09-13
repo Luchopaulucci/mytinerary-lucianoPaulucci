@@ -5,10 +5,12 @@ import Cities from "../pages/Cities";
 import SignUp from './../pages/SignUp';
 import SignIn from "../pages/SignIn";
 import Details from '../pages/Details';
+import Page404 from "../pages/page404";
+import ProtectedRoute from "./protectedRoute";
 
 const router = createBrowserRouter([
     {
-        path:'/',
+        path: '/',
         element: <Main />,
         children: [
             {
@@ -17,21 +19,30 @@ const router = createBrowserRouter([
             },
             {
                 path: '/cities',
-                element: <Cities />,
+                element: <Cities />
             },
             {
                 path: '/signin',
-                element: <SignIn />
+                element: (<ProtectedRoute path='/'>
+                    <SignIn />
+                </ProtectedRoute>)
             },
             {
                 path: '/signup',
-                element: <SignUp />
+                element: (<ProtectedRoute path='/'>
+                    <SignUp />
+                </ProtectedRoute>)
             },
             {
                 path: '/cities/:id',
                 element: <Details />
+
             }
         ]
+    },
+    {
+        path: '*',
+        element: <Page404 />
     },
 ]);
 

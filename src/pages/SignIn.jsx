@@ -1,17 +1,34 @@
-import { useDispatch } from "react-redux"
-import { user_photo } from "../store/actions/userActions";
+import { useDispatch, useSelector } from "react-redux"
+import { user_login } from "../store/actions/userActions";
+import { useState } from "react";
 
 const SignIn = () => {
-
   const dispatch = useDispatch();
 
-  const handleLogin = () => {
+  const store = useSelector(store => store.userReducer)
 
-    const user = {
-      photo: '../../public/descarga.png'
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handleInput = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    try {
+      dispatch(user_login({
+        data: formData
+      }))
+    } catch (error) {
+      console.log(error);
     }
-
-    dispatch(user_photo(user))
   }
 
   return (
@@ -25,14 +42,16 @@ const SignIn = () => {
             </p>
           </div>
 
-          <div action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+          <form onSubmit={handleLogin} action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
             <div>
               <label htmlFor="email" className="sr-only">
                 Email
               </label>
 
               <input
+                onChange={handleInput}
                 type="email"
+                name="email"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter email"
               />
@@ -44,7 +63,9 @@ const SignIn = () => {
               </label>
 
               <input
+                onChange={handleInput}
                 type="password"
+                name="password"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
               />
@@ -66,7 +87,7 @@ const SignIn = () => {
                 Sign in
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2 blur-[0.5px]">
