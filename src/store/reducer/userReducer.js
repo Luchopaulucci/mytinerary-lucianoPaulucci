@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { user_login, user_logout, user_photo, user_token, user_google } from "../actions/userActions";
+import { user_login, user_logout, user_photo, user_token, user_google} from "../actions/userActions";
 
 const initialState = {
     /* name: 'Lucho',

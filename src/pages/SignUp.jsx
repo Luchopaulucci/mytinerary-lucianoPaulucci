@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
 
@@ -37,18 +38,26 @@ const SignUp = () => {
   }
 
   const handleSignUp = async (event) => {
+    event.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:4000/api/auth/signup', formData)
-
+      const response = await axios.post('http://localhost:4000/api/auth/signup', formData)
+      Swal.fire({
+        title: 'Register',
+        text: 'User success register',
+        icon: 'success',
+        confirmButtonText: 'Continue'
+      })
       return {
-        user: data.response.user,
+        user: response.data.user,
       }
-
     } catch (error) {
-      console.log(error);
-      return {
-        user: null
-      }
+      Swal.fire({
+        title: 'ERROR',
+        text: error.response.data.message,
+        icon: 'error',
+        confirmButtonText: 'Continue'
+      })
+      console.log(error)
     }
   }
 
@@ -60,7 +69,7 @@ const SignUp = () => {
             <h2 className="text-2xl font-bold sm:text-3xl text-yellow-50">¡SIGN UP!</h2>
           </div>
 
-          <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+          <form onSubmit={handleSignUp} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
             <div>
               <label htmlFor="name" className="block text-lg font-medium text-white">
                 Name and Lastname
@@ -142,7 +151,6 @@ const SignUp = () => {
               </p>
 
               <button
-                onClick={handleSignUp}
                 type="submit"
                 className="inline-block rounded-lg bg-1 px-5 py-3 text-sm font-medium text-white"
               >

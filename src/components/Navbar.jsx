@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { user_logout } from "../store/actions/userActions";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
 
@@ -29,8 +30,17 @@ const Navbar = () => {
     closeSlide();
   };
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
+
       dispatch(user_logout());
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'logout succes',
+        showConfirmButton: false,
+        timer: 1500
+      })
   }
 
   return (
