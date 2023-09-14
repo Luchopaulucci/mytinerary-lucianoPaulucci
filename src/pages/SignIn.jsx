@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { user_login } from "../store/actions/userActions";
 import { useState } from "react";
+import GoogleButton from "../components/GoogleButton";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -87,6 +88,7 @@ const SignIn = () => {
                 Sign in
               </button>
             </div>
+            <GoogleButton />
           </form>
         </div>
 

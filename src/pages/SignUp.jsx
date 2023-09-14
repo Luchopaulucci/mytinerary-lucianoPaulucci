@@ -24,7 +24,6 @@ const SignUp = () => {
         console.log(error);
       }
     };
-
     getCountryes();
   }, []);
 
@@ -39,9 +38,7 @@ const SignUp = () => {
 
   const handleSignUp = async (event) => {
     try {
-      const { data } = await axios.post('http://localhost:4000/api/auth/signup', event.data)
-
-      console.log(data);
+      const { data } = await axios.post('http://localhost:4000/api/auth/signup', formData)
 
       return {
         user: data.response.user,
@@ -54,10 +51,6 @@ const SignUp = () => {
       }
     }
   }
-
-
-
-
 
   return (
     <div className="relative bg-registerFondo bg-no-repeat bg-cover h-screen">

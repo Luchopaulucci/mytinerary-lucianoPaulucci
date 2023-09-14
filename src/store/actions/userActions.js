@@ -29,6 +29,20 @@ export const user_login = createAsyncThunk('user_login', async (obj) => {
     }
 })
 
+export const user_google = createAsyncThunk('user_google',async (obj)=>{
+    try {
+        const {data} = await axios.post('http://localhost:4000/api/auth/google',obj.data)
+        localStorage.setItem('token',data.response.token)
+        localStorage.setItem('user',JSON.stringify(data.response.user))
+        return {
+            user: data.response.user,
+            token:data.response.token
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 export const user_logout = createAction('user_logout', () => {
     return {
         payload: "",
