@@ -1,30 +1,25 @@
 import React from "react";
 import Cards from "./Cards";
-import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filter_cities, get_cities } from "../store/actions/citieActions";
 
 const CitiesList = () => {
-  const [cities, setCities] = useState([]);
+
+  const dispatch = useDispatch()
+
+  const store = useSelector((cities) => cities.citieReducer.cities)
+
   const inputSearch = useRef();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/cities/get")
-      .then((response) => setCities(response.data.cities))
-      .catch((err) => console.error(err));
+    dispatch(get_cities())
   }, []);
 
-  const handleSearch = async (citie) => {
-    const citieSearch = inputSearch.current.value;
-
-    try {
-      await axios
-        .get(`http://localhost:4000/api/cities/get?citie=${citieSearch}`)
-        .then((response) => setCities(response.data.cities));
-    } catch (error) {
-      console.error(error);
-      setCities([]);
-    }
+  const handleSearch = (citie) => {
+      dispatch(filter_cities({
+        citieSearch: inputSearch.current.value,
+      }))
   };
 
   return (
@@ -63,9 +58,9 @@ const CitiesList = () => {
           </svg>
         </button>
       </div>
-      <div className="flex flex-col gap-2 justify-center items-center sm:flex-row sm:flex-wrap my-10">
-        {cities?.length > 0 ? (
-          cities.map((cards) => (
+      <div className="flex flex-col gap-4 justify-center items-center sm:flex-row sm:flex-wrap my-10">
+        {store?.length > 0 ? (
+          store.map((cards) => (
             <Cards
               key={cards.citie}
               citie={cards.citie}
